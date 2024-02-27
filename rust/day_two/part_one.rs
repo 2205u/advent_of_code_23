@@ -12,6 +12,24 @@ impl RGB {
     }
 }
 
+enum Color {
+    Red,
+    Green,
+    Blue
+}
+
+impl Color {
+    fn from(str: &str) -> Self {
+        match str {
+            "red" => Color::Red,
+            "blue" => Color::Blue,
+            "green" => Color::Green,
+            &_ => panic!(),
+        }
+    }
+}
+
+
 fn main() {
     let puzzle_input = include_str!("./puzzle_input.txt");
     let mut answer = 0;
@@ -40,20 +58,18 @@ fn main() {
                 match word {
 
                     end_colour if end_colour.ends_with(";") => {
-                        let final_colour = end_colour.replace(";", "");
-                        
-                        match final_colour.as_str() {
-                             "red" => {
+                        let colour = Color::from(&end_colour.replace(";", ""));
+                        match colour {
+                            Color::Red => {
                                 ball_count.0 += temp_color_store;
                             },
-                             "green" => {
+                            Color::Green => {
                                 ball_count.1 += temp_color_store;
                             },
-                             "blue" => {
+                            Color::Blue => {
                                 ball_count.2 += temp_color_store;
                             },
-                            _ => panic!(),
-                           };
+                        };
 
                         if !ball_count.is_possible() {
                             is_possible = false;
