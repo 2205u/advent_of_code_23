@@ -1,8 +1,3 @@
-    // traverse line from front till first digit
-    // save x =first digit*10
-    // traverse line from back till first digit
-    // add digit to x
-    // add to sum
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
